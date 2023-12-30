@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    private Rigidbody rb;
+    [SerializeField] private float moveSpeed;
+    
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start(){
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -19,7 +21,7 @@ public class Movement : MonoBehaviour
 
     void Boost(){
         if(Input.GetKey(KeyCode.Space)){
-            Debug.Log("Boosting: ");
+            rb.AddRelativeForce(Vector3.up*Time.deltaTime*moveSpeed);
         }
     }
 
