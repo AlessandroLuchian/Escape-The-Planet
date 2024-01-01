@@ -35,12 +35,18 @@ public class Movement : MonoBehaviour
     }
 
     void Mover(){
-        if(Input.GetKey(KeyCode.A)){
-            transform.Rotate(Vector3.forward*Time.deltaTime*moveSpeed);
+        if(Input.GetKey(KeyCode.A))
+        {
+            ApplyRotation(moveSpeed);
         }
         else if(Input.GetKey(KeyCode.D)){
-            transform.Rotate(-Vector3.forward*Time.deltaTime*moveSpeed);
+            ApplyRotation(-moveSpeed);
         }
+    }
+
+    private void ApplyRotation(float rotationThisFrame)
+    {
+        transform.Rotate(Vector3.forward * Time.deltaTime * rotationThisFrame);
     }
 
     private void OnCollisionEnter(Collision other) {
@@ -53,6 +59,7 @@ public class Movement : MonoBehaviour
             enabled = true;
             playerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
             rb.velocity = Vector3.zero;
+
             playerRenderer.material.color = defaultColor;
         }
         else if(other.gameObject.CompareTag("Finish")){

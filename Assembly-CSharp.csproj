@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Assets\Skripts\DisablePlayerMovement.cs" />
     <Compile Include="Assets\Skripts\Movement.cs" />
+    <Compile Include="Assets\Skripts\Audio.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
