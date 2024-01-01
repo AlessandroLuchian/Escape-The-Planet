@@ -355,6 +355,7 @@
 "Assets/Skripts/Audio.cs"
 "Assets/Skripts/DisablePlayerMovement.cs"
 "Assets/Skripts/Movement.cs"
+"Assets/Skripts/ReloadSceneKey.cs"
 -langversion:9.0
 
 /deterministic

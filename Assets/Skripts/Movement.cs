@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -50,22 +51,31 @@ public class Movement : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.CompareTag("Obstacle")){
-            playerRenderer.material.color = new Color(1f, 0f, 0f, 1f);
-            enabled = false;
+        switch (other.gameObject.tag)
+        {
+            case "Obstacle":
+                playerRenderer.material.color = new Color(1f, 0f, 0f, 1f);
+                enabled = false; 
+                break;
+            
+            case "Ground":
+            /*  playerTransform.position = new Vector3(-10f, 5f, 0f);
+                enabled = true;
+                playerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+                rb.velocity = Vector3.zero; 
+                playerRenderer.material.color = defaultColor; */
+                ReloadLevel();
+                break;
+            
+            case "Finish":
+            /*  playerTransform.position = new Vector3(-10f, 5f, 0f);
+                playerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+                rb.velocity = Vector3.zero; */
+                ReloadLevel();
+                break;
         }
-        else if(other.gameObject.CompareTag("Ground")){
-            playerTransform.position = new Vector3(-10f, 5f, 0f);
-            enabled = true;
-            playerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
-            rb.velocity = Vector3.zero;
-
-            playerRenderer.material.color = defaultColor;
-        }
-        else if(other.gameObject.CompareTag("Finish")){
-            playerTransform.position = new Vector3(-10f, 5f, 0f);
-            playerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
-            rb.velocity = Vector3.zero;
-        }
+    }
+    void ReloadLevel(){
+        SceneManager.LoadScene("SandBox");
     }
 }

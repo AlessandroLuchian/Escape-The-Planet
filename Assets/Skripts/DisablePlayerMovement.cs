@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DisablePlayerMovement : MonoBehaviour
 {
@@ -9,9 +10,20 @@ public class DisablePlayerMovement : MonoBehaviour
     void Start()
     {
     }
+    void Update() {
+    }
     private void OnCollisionEnter(Collision other) {
-       if(other.gameObject.CompareTag("Player")){
-            playerMovement.enabled = false;
+       switch (other.gameObject.tag){
+            case "Player":
+                playerMovement.enabled = false;
+                break;
+            default:
+                ReloadLevel();
+                break;
        }     
+    }
+
+    void ReloadLevel(){
+        SceneManager.LoadScene("SandBox");
     }
 }
