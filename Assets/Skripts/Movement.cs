@@ -55,7 +55,7 @@ public class Movement : MonoBehaviour
         {
             case "Obstacle":
                 playerRenderer.material.color = new Color(1f, 0f, 0f, 1f);
-                enabled = false; 
+                enabled = false;
                 break;
             
             case "Ground":
@@ -71,11 +71,17 @@ public class Movement : MonoBehaviour
             /*  playerTransform.position = new Vector3(-10f, 5f, 0f);
                 playerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
                 rb.velocity = Vector3.zero; */
-                ReloadLevel();
+                loadNextLevel();
                 break;
         }
     }
     void ReloadLevel(){
-        SceneManager.LoadScene("SandBox");
+        int CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(CurrentSceneIndex);
+    }
+
+    void loadNextLevel(){
+        int CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(CurrentSceneIndex + 1);
     }
 }

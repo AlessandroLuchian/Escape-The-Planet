@@ -18,12 +18,13 @@ public class DisablePlayerMovement : MonoBehaviour
                 playerMovement.enabled = false;
                 break;
             default:
-                ReloadLevel();
+                ReloadLevel(0);
                 break;
        }     
     }
 
-    void ReloadLevel(){
-        SceneManager.LoadScene("SandBox");
+    void ReloadLevel(int CurrentSceneIndex){
+        CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(CurrentSceneIndex);
     }
 }
