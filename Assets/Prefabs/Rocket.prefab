@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 7260621249167481936}
   - component: {fileID: 2235916436575974319}
   - component: {fileID: 7378144185212902091}
-  - component: {fileID: 4471992935669151108}
   - component: {fileID: 7333138563202136090}
   - component: {fileID: 3746369405117747087}
   - component: {fileID: 4181665868196358580}
+  - component: {fileID: 5737704347014578145}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Player
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 200
+  secondDelay: 1
 --- !u!54 &7378144185212902091
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -151,14 +152,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
---- !u!81 &4471992935669151108
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8450912306169790057}
-  m_Enabled: 1
 --- !u!82 &7333138563202136090
 AudioSource:
   m_ObjectHideFlags: 0
@@ -280,3 +273,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathCount: 0
+--- !u!81 &5737704347014578145
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8450912306169790057}
+  m_Enabled: 0

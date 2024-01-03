@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     private Transform playerTransform;
     Color defaultColor;
 
+    [SerializeField]private float secondDelay = 0f;
+
     // Start is called before the first frame update
     void Start(){
         rb = GetComponent<Rigidbody>();
@@ -54,8 +56,7 @@ public class Movement : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Obstacle":
-                playerRenderer.material.color = new Color(1f, 0f, 0f, 1f);
-                enabled = false;
+                    playerCrashSequence();
                 break;
             
             case "Ground":
@@ -64,24 +65,38 @@ public class Movement : MonoBehaviour
                 playerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
                 rb.velocity = Vector3.zero; 
                 playerRenderer.material.color = defaultColor; */
-                ReloadLevel();
+                playerCrashSequence();
                 break;
             
             case "Finish":
             /*  playerTransform.position = new Vector3(-10f, 5f, 0f);
                 playerTransform.rotation = new Quaternion(0f, 0f, 0f, 0f);
                 rb.velocity = Vector3.zero; */
-                loadNextLevel();
+                delayLoadNextLevel();
                 break;
         }
     }
-    void ReloadLevel(){
+
+    void playerCrashSequence(){
+        playerRenderer.material.color = new Color(1f, 0f, 0f, 1f);
+        enabled = false;
+        Invoke("reloadLevel", secondDelay);
+    }
+    void reloadLevel(){
         int CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(CurrentSceneIndex);
     }
 
+    void delayLoadNextLevel(){
+        enabled = false;
+        Invoke("loadNextLevel", secondDelay);
+    }
     void loadNextLevel(){
         int CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(CurrentSceneIndex + 1);
+        int nextSceneIndex = CurrentSceneIndex + 1;
+        if(nextSceneIndex == SceneManager.sceneCountInBuildSettings){
+            nextSceneIndex = 0;
+        }
+        SceneManager.LoadScene(nextSceneIndex);
     }
 }
