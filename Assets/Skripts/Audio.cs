@@ -5,28 +5,36 @@ using UnityEngine;
 
 public class Audio : MonoBehaviour
 {
-    private AudioSource Boosting;
-
+    private AudioSource audioStorage;
+    [SerializeField] public AudioClip audioClip1;
+    [SerializeField] public AudioClip audioClip2;
     // Start is called before the first frame update
     void Start()
     {
-       Boosting = GetComponent<AudioSource>();
+       audioStorage = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        AudioBoost();
     }
-
-    void AudioBoost(){
-        if(Input.GetKey(KeyCode.Space)){
-            if(!Boosting.isPlaying){
-            Boosting.Play();
-            }
+    private void OnCollisionEnter(Collision other) {
+        switch (other.gameObject.tag)
+        {
+            case "Obstacle":
+                PlayAudio(audioClip1);
+                break;
+            case "Ground":
+                PlayAudio(audioClip1);
+                break;
+            case "Finish":
+                PlayAudio(audioClip2);
+                break;
         }
-        else{
-            Boosting.Stop();
-        }
+    }
+        void PlayAudio(AudioClip clip){
+        // audioStorage.clip = clip;
+        audioStorage.PlayOneShot(clip);
+        Debug.Log("boom");
     }
 }

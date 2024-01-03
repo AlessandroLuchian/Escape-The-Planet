@@ -18,13 +18,13 @@ public class DisablePlayerMovement : MonoBehaviour
                 playerMovement.enabled = false;
                 break;
             default:
-                ReloadLevel(0);
+                ReloadLevel();
                 break;
        }     
     }
 
-    void ReloadLevel(int CurrentSceneIndex){
-        CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+    void ReloadLevel(){
+        int CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(CurrentSceneIndex);
     }
 }

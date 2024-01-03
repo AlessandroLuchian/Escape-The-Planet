@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 200
+  mainEngine: {fileID: 8300000, guid: 4bdec2e6c907a644cabdbe2553838611, type: 3}
   secondDelay: 1
 --- !u!54 &7378144185212902091
 Rigidbody:
@@ -260,6 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789bc096371ffcc488d30536e5a8b4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClip1: {fileID: 8300000, guid: 7f230aef681d89a4b998b136155d807b, type: 3}
+  audioClip2: {fileID: 8300000, guid: b3e90f01559698d409ac64f3aa094f05, type: 3}
 --- !u!114 &4181665868196358580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,7 +275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f160323b676de14b8b427152cf500ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeathCount: 0
 --- !u!81 &5737704347014578145
 AudioListener:
   m_ObjectHideFlags: 0

@@ -5,7 +5,6 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class Movement : MonoBehaviour
 {
     private Rigidbody rb;
@@ -13,7 +12,10 @@ public class Movement : MonoBehaviour
     private MeshRenderer playerRenderer;
     private Transform playerTransform;
     Color defaultColor;
-
+    
+    [SerializeField] AudioClip mainEngine;
+    private AudioSource audioStorage;
+  
     [SerializeField]private float secondDelay = 0f;
 
     // Start is called before the first frame update
@@ -22,6 +24,7 @@ public class Movement : MonoBehaviour
         playerRenderer = GetComponent<MeshRenderer>();
         playerTransform = GetComponent<Transform>();
         defaultColor = playerRenderer.material.color;
+        audioStorage = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -29,6 +32,7 @@ public class Movement : MonoBehaviour
     {
         Boost();
         Mover();
+        AudioBoost();
     }
 
     void Boost(){
@@ -57,6 +61,7 @@ public class Movement : MonoBehaviour
         {
             case "Obstacle":
                     playerCrashSequence();
+
                 break;
             
             case "Ground":
@@ -98,5 +103,15 @@ public class Movement : MonoBehaviour
             nextSceneIndex = 0;
         }
         SceneManager.LoadScene(nextSceneIndex);
+    }
+        void AudioBoost(){
+        if(Input.GetKey(KeyCode.Space)){
+            if(!audioStorage.isPlaying){
+            audioStorage.PlayOneShot(mainEngine);
+            }
+        }
+        else {
+            audioStorage.Stop();
+        }
     }
 }
